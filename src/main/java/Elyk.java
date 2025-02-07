@@ -9,9 +9,9 @@ public class Elyk {
 
     public static void main(String[] args) {
         greet();
-        updateInput();
 
         while (true) {
+            updateInput();
             switch (input) {
                 case "bye":
                     sayBye();
@@ -28,7 +28,6 @@ public class Elyk {
                 default:
                     inputTask(input);
             }
-            updateInput();
         }
     }
 
