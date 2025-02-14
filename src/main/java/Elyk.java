@@ -15,8 +15,9 @@ public class Elyk {
         greet();
 
         while (true) {
-            updateInput();
-            switch (input) {
+            try {
+                updateInput();
+                switch (input) {
                 case "bye":
                     sayBye();
                     System.exit(0);
@@ -42,6 +43,12 @@ public class Elyk {
                     inputTask();
                     break;
                 default:
+                    throw new ElykException();
+                }
+            } catch (ElykException e) {
+                System.out.println(" Sorry :( I currently does not support this command, please try again.");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(" Hmm... There might be some missing information in your command...");
             }
         }
     }
