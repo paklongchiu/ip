@@ -32,21 +32,18 @@ public class Elyk {
                     markTaskNotDone(taskNum);
                     break;
                 case "delete":
-
+                    deleteTask(taskNum);
                     break;
                 case "todo":
                     taskList.add(new Todo(description));
-                    taskCounter++;
                     inputTask();
                     break;
                 case "deadline":
                     taskList.add(new Deadline(description, by));
-                    taskCounter++;
                     inputTask();
                     break;
                 case "event":
                     taskList.add(new Event(description, from, to));
-                    taskCounter++;
                     inputTask();
                     break;
                 default:
@@ -108,12 +105,18 @@ public class Elyk {
     }
 
     public static void inputTask() {
+        taskCounter++;
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + taskList.get(taskCounter - 1));
         System.out.println("Now you have " + taskCounter + " tasks in the list.");
     }
 
-    
+    public static void deleteTask(int taskNum) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + taskList.get(taskNum - 1));
+        System.out.println("Now you have " + --taskCounter + " tasks in the list.");
+        taskList.remove(taskList.get(taskNum - 1));
+    }
 
     public static void printTask() {
         System.out.println("Here are the tasks in your list:");
