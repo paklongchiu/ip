@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Elyk {
@@ -8,7 +9,7 @@ public class Elyk {
     public static String from = "";
     public static String to = "";
     public static String by = "";
-    public static Task[] taskList = new Task[100];
+    public static ArrayList<Task> taskList = new ArrayList<>();
     public static Scanner command = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -30,16 +31,22 @@ public class Elyk {
                 case "unmark":
                     markTaskNotDone(taskNum);
                     break;
+                case "delete":
+
+                    break;
                 case "todo":
-                    taskList[taskCounter++] = new Todo(description);
+                    taskList.add(new Todo(description));
+                    taskCounter++;
                     inputTask();
                     break;
                 case "deadline":
-                    taskList[taskCounter++] = new Deadline(description, by);
+                    taskList.add(new Deadline(description, by));
+                    taskCounter++;
                     inputTask();
                     break;
                 case "event":
-                    taskList[taskCounter++] = new Event(description, from, to);
+                    taskList.add(new Event(description, from, to));
+                    taskCounter++;
                     inputTask();
                     break;
                 default:
@@ -66,7 +73,7 @@ public class Elyk {
 
     public static void updateInput() {
         input = command.nextLine();
-        if (input.startsWith("mark") || input.startsWith("unmark")) {
+        if (input.startsWith("mark") || input.startsWith("unmark") || input.startsWith("delete")) {
             String[] words = input.split(" ");
             input = words[0];
             taskNum = Integer.parseInt(words[1]);
@@ -89,27 +96,29 @@ public class Elyk {
     }
 
     public static void markTaskDone(int taskNum) {
-        taskList[taskNum - 1].markAsDone();
+        taskList.get(taskNum - 1).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + taskList[taskNum - 1]);
+        System.out.println("  " + taskList.get(taskNum - 1));
     }
 
     public static void markTaskNotDone(int taskNum) {
-        taskList[taskNum - 1].markAsNotDone();
+        taskList.get(taskNum - 1).markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + taskList[taskNum - 1]);
+        System.out.println("  " + taskList.get(taskNum - 1));
     }
 
     public static void inputTask() {
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + taskList[taskCounter - 1]);
+        System.out.println("  " + taskList.get(taskCounter - 1));
         System.out.println("Now you have " + taskCounter + " tasks in the list.");
     }
+
+    
 
     public static void printTask() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskCounter; i++) {
-            System.out.println((i+1) + "." + taskList[i]);
+            System.out.println((i+1) + "." + taskList.get(i));
         }
     }
 }
