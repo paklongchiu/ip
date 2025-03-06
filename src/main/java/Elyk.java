@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Elyk {
-    public static int taskCounter = 0;
     public static int taskNum = 0;
     public static String input = "";
     public static String description = "";
@@ -105,22 +104,21 @@ public class Elyk {
     }
 
     public static void inputTask() {
-        taskCounter++;
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + taskList.get(taskCounter - 1));
-        System.out.println("Now you have " + taskCounter + " tasks in the list.");
+        System.out.println("  " + taskList.getLast());
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
     public static void deleteTask(int taskNum) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + taskList.get(taskNum - 1));
-        System.out.println("Now you have " + --taskCounter + " tasks in the list.");
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         taskList.remove(taskList.get(taskNum - 1));
     }
 
     public static void printTask() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskCounter; i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             System.out.println((i+1) + "." + taskList.get(i));
         }
     }
