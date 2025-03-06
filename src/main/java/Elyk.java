@@ -119,8 +119,8 @@ public class Elyk {
     public static void deleteTask(int taskNum) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + taskList.get(taskNum - 1));
-        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         taskList.remove(taskList.get(taskNum - 1));
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
     public static void printTask() {
