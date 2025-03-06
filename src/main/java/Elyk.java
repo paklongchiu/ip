@@ -12,6 +12,7 @@ public class Elyk {
     public static Scanner command = new Scanner(System.in);
 
     public static void main(String[] args) {
+        taskList = Storage.loadTasks();
         greet();
 
         while (true) {
@@ -26,24 +27,30 @@ public class Elyk {
                     break;
                 case "mark":
                     markTaskDone(taskNum);
+                    Storage.saveTasks(taskList);
                     break;
                 case "unmark":
                     markTaskNotDone(taskNum);
+                    Storage.saveTasks(taskList);
                     break;
                 case "delete":
                     deleteTask(taskNum);
+                    Storage.saveTasks(taskList);
                     break;
                 case "todo":
                     taskList.add(new Todo(description));
                     inputTask();
+                    Storage.saveTasks(taskList);
                     break;
                 case "deadline":
                     taskList.add(new Deadline(description, by));
                     inputTask();
+                    Storage.saveTasks(taskList);
                     break;
                 case "event":
                     taskList.add(new Event(description, from, to));
                     inputTask();
+                    Storage.saveTasks(taskList);
                     break;
                 default:
                     throw new ElykException();
