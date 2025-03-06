@@ -90,23 +90,12 @@ public class Storage {
         boolean isDone = parts[1].equals("1");
         String description = parts[2];
 
-        Task task = null;
-
-        switch (type) {
-        case "T":
-            task = new Todo(description);
-            break;
-        case "D":
-            if (parts.length > 3) {
-                task = new Deadline(description, parts[3]);
-            }
-            break;
-        case "E":
-            if (parts.length > 4) {
-                task = new Event(description, parts[3], parts[4]);
-            }
-            break;
-        }
+        Task task = switch (type) {
+            case "T" -> new Todo(description);
+            case "D" -> new Deadline(description, parts[3]);
+            case "E" -> new Event(description, parts[3], parts[4]);
+            default -> null;
+        };
 
         if (task != null && isDone) {
             task.markAsDone();
