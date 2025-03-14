@@ -16,9 +16,9 @@ public class Storage {
         TaskList tasks = new TaskList();
 
         try {
-            File directory = new File(dataFolder);
-            if (!directory.exists()) {
-                directory.mkdir();
+            File folder = new File(dataFolder);
+            if (!folder.exists()) {
+                folder.mkdir();
             }
 
             File file = new File(dataFile);
