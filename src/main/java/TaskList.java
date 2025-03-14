@@ -11,12 +11,13 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public void addTask(Task task) {
+    public Task addTask(Task task) {
         tasks.add(task);
+        return task;
     }
 
-    public void removeTask(int index) {
-        tasks.remove(index);
+    public Task removeTask(int index) {
+        return tasks.remove(index);
     }
 
     public Task getTask(int index) {

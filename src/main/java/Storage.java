@@ -4,19 +4,24 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String DATA_FOLDER = "./data";
-    private static final String DATA_FILE = DATA_FOLDER + "/elyk.txt";
+    private static String dataFolder;
+    private static String dataFile;
 
-    public static TaskList loadTasks() {
+    public Storage(String elykFile) {
+        dataFolder = elykFile.substring(0, elykFile.indexOf("/"));
+        dataFile = elykFile;
+    }
+
+    public TaskList loadTasks() {
         TaskList tasks = new TaskList();
 
         try {
-            File directory = new File(DATA_FOLDER);
+            File directory = new File(dataFolder);
             if (!directory.exists()) {
                 directory.mkdir();
             }
 
-            File file = new File(DATA_FILE);
+            File file = new File(dataFile);
             if (!file.exists()) {
                 file.createNewFile();
                 return tasks;
@@ -41,9 +46,9 @@ public class Storage {
         return tasks;
     }
 
-    public static void saveTasks(TaskList tasks) {
+    public void saveTasks(TaskList tasks) {
         try {
-            FileWriter writer = new FileWriter(DATA_FILE);
+            FileWriter writer = new FileWriter(dataFile);
             for (Task task : tasks.getTaskList()) {
                 writer.write(convertTaskToString(task) + "\n");
             }
