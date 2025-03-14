@@ -1,3 +1,7 @@
+/**
+ * The main class of task manager: Elyk, which controls all the executions of the main program by
+ * utilising the functionality of all the other classes.
+ */
 public class Elyk {
     public static int taskNum = 0;
     public static String input = "";
@@ -10,6 +14,11 @@ public class Elyk {
     private static TaskList taskList;
     private static Ui ui;
 
+    /**
+     * Constructor of Elyk class which initialises a Storage, TaskList and Ui
+     *
+     * @param elykFile path of the file used to load and save tasks
+     */
     public Elyk(String elykFile) {
         ui = new Ui();
         storage = new Storage(elykFile);
@@ -20,6 +29,9 @@ public class Elyk {
         new Elyk("data/Elyk.txt").run();
     }
 
+    /**
+     * Runs all the features that the task manager Elyk contains
+     */
     public void run() {
         ui.greet();
 
