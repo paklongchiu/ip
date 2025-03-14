@@ -8,8 +8,11 @@ public class Elyk {
     public static String from = "";
     public static String to = "";
     public static String by = "";
-    public static ArrayList<Task> taskList = new ArrayList<>();
+    public static TaskList taskList = new TaskList();
     public static Scanner command = new Scanner(System.in);
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
     public static void main(String[] args) {
         taskList = Storage.loadTasks();
@@ -38,17 +41,17 @@ public class Elyk {
                     Storage.saveTasks(taskList);
                     break;
                 case "todo":
-                    taskList.add(new Todo(description));
+                    taskList.addTask(new Todo(description));
                     inputTask();
                     Storage.saveTasks(taskList);
                     break;
                 case "deadline":
-                    taskList.add(new Deadline(description, by));
+                    taskList.addTask(new Deadline(description, by));
                     inputTask();
                     Storage.saveTasks(taskList);
                     break;
                 case "event":
-                    taskList.add(new Event(description, from, to));
+                    taskList.addTask(new Event(description, from, to));
                     inputTask();
                     Storage.saveTasks(taskList);
                     break;
@@ -99,34 +102,34 @@ public class Elyk {
     }
 
     public static void markTaskDone(int taskNum) {
-        taskList.get(taskNum - 1).markAsDone();
+        taskList.getTask(taskNum - 1).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + taskList.get(taskNum - 1));
+        System.out.println("  " + taskList.getTask(taskNum - 1));
     }
 
     public static void markTaskNotDone(int taskNum) {
-        taskList.get(taskNum - 1).markAsNotDone();
+        taskList.getTask(taskNum - 1).markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + taskList.get(taskNum - 1));
+        System.out.println("  " + taskList.getTask(taskNum - 1));
     }
 
     public static void inputTask() {
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + taskList.getLast());
+        System.out.println("  " + taskList.getTask(taskList.size() - 1));
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
     public static void deleteTask(int taskNum) {
         System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + taskList.get(taskNum - 1));
-        taskList.remove(taskList.get(taskNum - 1));
+        System.out.println("  " + taskList.getTask(taskNum - 1));
+        taskList.removeTask(taskNum - 1);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
     public static void printTask() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println((i+1) + "." + taskList.get(i));
+            System.out.println((i+1) + "." + taskList.getTask(i));
         }
     }
 }

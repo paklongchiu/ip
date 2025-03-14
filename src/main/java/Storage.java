@@ -1,15 +1,14 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
     private static final String DATA_FOLDER = "./data";
     private static final String DATA_FILE = DATA_FOLDER + "/elyk.txt";
 
-    public static ArrayList<Task> loadTasks() {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public static TaskList loadTasks() {
+        TaskList tasks = new TaskList();
 
         try {
             File directory = new File(DATA_FOLDER);
@@ -29,29 +28,29 @@ public class Storage {
                 if (!line.isEmpty()) {
                     Task task = parseTaskFromString(line);
                     if (task != null) {
-                        tasks.add(task);
+                        tasks.addTask(task);
                     }
                 }
             }
             scanner.close();
 
         } catch (IOException e) {
-            System.out.println("Error loading data: " + e.getMessage());
+            System.out.println("There is an error while loading data :(" + e.getMessage());
         }
 
         return tasks;
     }
 
-    public static void saveTasks(ArrayList<Task> tasks) {
+    public static void saveTasks(TaskList tasks) {
         try {
             FileWriter writer = new FileWriter(DATA_FILE);
-            for (Task task : tasks) {
+            for (Task task : tasks.getTaskList()) {
                 writer.write(convertTaskToString(task) + "\n");
             }
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("Error saving data: " + e.getMessage());
+            System.out.println("There is an error while saving data :(" + e.getMessage());
         }
     }
 
