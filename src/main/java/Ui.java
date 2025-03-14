@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class Ui {
     private Scanner scanner;
 
+    /**
+     * Constructor of Ui class that adds a Scanner to receive user's input
+     */
     public Ui() {
         scanner = new Scanner(System.in);
     }
