@@ -25,6 +25,8 @@ public class Parser {
             return "deadline";
         } else if (input.startsWith("event")) {
             return "event";
+        } else if (input.startsWith("find")) {
+            return "find";
         } else {
             return "default";
         }
@@ -95,5 +97,9 @@ public class Parser {
     public static String getTo(String input) {
         int toPos = input.indexOf("/to");
         return input.substring(toPos + 4);
+    }
+
+    public static String getKeyword(String input) {
+        return input.substring(5);
     }
 }

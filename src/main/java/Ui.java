@@ -36,8 +36,10 @@ public class Ui {
      * Greets the user at the beginning of the program
      */
     public void greet() {
-        String greet = "Hello! I'm Elyk\n" +
-                "What can I do for you?\n";
+        String greet = """
+                Hello! I'm Elyk
+                What can I do for you?
+                """;
         System.out.println(greet);
     }
 
@@ -98,6 +100,10 @@ public class Ui {
      */
     public void printTasks() {
         System.out.println("Here are the tasks in your list:");
+    }
+
+    public void printMatchingTasks() {
+        System.out.println("Here are the matching tasks in your list:");
     }
 
     /**

@@ -9,6 +9,7 @@ public class Elyk {
     public static String from = "";
     public static String to = "";
     public static String by = "";
+    public static String keyword = "";
     private static Storage storage;
     private static TaskList taskList;
     private static Ui ui;
@@ -88,6 +89,14 @@ public class Elyk {
                     Task addedEvent = taskList.addTask(new Event(description, from, to));
                     ui.inputTask(addedEvent, taskList.size());
                     storage.saveTasks(taskList);
+                    break;
+                case "find":
+                    keyword = Parser.getKeyword(input);
+                    TaskList foundTasks = taskList.findMatchingTasks(keyword);
+                    ui.printMatchingTasks();
+                    for (int i = 0; i < foundTasks.size(); i++) {
+                        ui.printIndividualTask(foundTasks.getTask(i), i);
+                    }
                     break;
                 default:
                     throw new ElykException();
