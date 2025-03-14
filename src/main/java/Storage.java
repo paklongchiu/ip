@@ -55,27 +55,27 @@ public class Storage {
     }
 
     private static String convertTaskToString(Task task) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         if (task instanceof Todo) {
-            sb.append("T");
+            stringBuilder.append("T");
         } else if (task instanceof Deadline) {
-            sb.append("D");
+            stringBuilder.append("D");
         } else if (task instanceof Event) {
-            sb.append("E");
+            stringBuilder.append("E");
         }
 
-        sb.append(" | ").append(task.isDone ? "1" : "0");
-        sb.append(" | ").append(task.description);
+        stringBuilder.append(" | ").append(task.isDone ? "1" : "0");
+        stringBuilder.append(" | ").append(task.description);
 
         if (task instanceof Deadline) {
-            sb.append(" | ").append(((Deadline) task).by);
+            stringBuilder.append(" | ").append(((Deadline) task).by);
         } else if (task instanceof Event) {
-            sb.append(" | ").append(((Event) task).from);
-            sb.append(" | ").append(((Event) task).to);
+            stringBuilder.append(" | ").append(((Event) task).from);
+            stringBuilder.append(" | ").append(((Event) task).to);
         }
 
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     private static Task parseTaskFromString(String line) {
