@@ -3,15 +3,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file, each with
+ * a helper function to deal with formatting
+ */
 public class Storage {
     private static String dataFolder;
     private static String dataFile;
 
+    /**
+     * Constructor of Storage that extracts both the folder and file paths
+     *
+     * @param elykFile path of the file used to load and save tasks
+     */
     public Storage(String elykFile) {
         dataFolder = elykFile.substring(0, elykFile.indexOf("/"));
         dataFile = elykFile;
     }
 
+    /**
+     * Loads tasks from the file into a TaskList object
+     *
+     * @return a TaskList object containing all tasks loaded from the file
+     */
     public TaskList loadTasks() {
         TaskList tasks = new TaskList();
 
@@ -46,6 +60,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves tasks into the file from a TaskList object
+     *
+     * @param tasks a TaskList object whose tasks are to be saved into the file
+     */
     public void saveTasks(TaskList tasks) {
         try {
             FileWriter writer = new FileWriter(dataFile);
@@ -59,6 +78,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a task into a storable String type argument
+     *
+     * @param task the task to be saved
+     * @return a String representing the task
+     */
     private static String convertTaskToString(Task task) {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -83,6 +108,12 @@ public class Storage {
         return stringBuilder.toString();
     }
 
+    /**
+     * Parses a task from the string stored in the file
+     *
+     * @param line a String representing the task to be loaded
+     * @return a task to be loaded
+     */
     private static Task parseTaskFromString(String line) {
         String[] parts = line.split(" \\| ");
 

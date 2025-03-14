@@ -49,7 +49,7 @@ public class Ui {
     /**
      * Prints a message w.r.t. the task being marked done
      *
-     * @param task
+     * @param task task being marked done
      */
     public void markTaskDone(Task task) {
         System.out.println("Nice! I've marked this task as done:");
@@ -59,7 +59,7 @@ public class Ui {
     /**
      * Prints a message w.r.t. the task being marked not done
      *
-     * @param task
+     * @param task task being marked not done
      */
     public void markTaskNotDone(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
@@ -69,8 +69,8 @@ public class Ui {
     /**
      * Prints a message w.r.t. the task being added and shows the current total no. of tasks
      *
-     * @param task
-     * @param taskCounter
+     * @param task task being added
+     * @param taskCounter current total no. of tasks
      */
     public void inputTask(Task task, int taskCounter) {
         System.out.println("Got it. I've added this task:");
@@ -81,8 +81,8 @@ public class Ui {
     /**
      * Prints a message w.r.t. the task being deleted and shows the current total no. of tasks
      *
-     * @param task
-     * @param taskCounter
+     * @param task task being deleted
+     * @param taskCounter current total no. of tasks
      */
     public void deleteTask(Task task, int taskCounter) {
         System.out.println("Noted. I've removed this task:");
@@ -100,8 +100,8 @@ public class Ui {
     /**
      * Prints a single task according to its index in the TaskList
      *
-     * @param task
-     * @param i
+     * @param task task i in the TaskList
+     * @param i index of task
      */
     public void printIndividualTask(Task task, int i) {
         System.out.println((i+1) + "." + task);
